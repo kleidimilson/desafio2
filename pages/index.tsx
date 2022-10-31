@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import { useState } from 'react';
+import { AnimatedMulti } from '../components/Select';
 import styles from '../styles/Home.module.css'
 import {maskCPF, maskPhone} from '../utils/Regex';
 
@@ -61,10 +62,11 @@ export default function Home() {
                    placeholder="000.000.000-00"
                    required/>
                 </div>
-                <button type='submit'>Enviar</button>
+                <button className={styles.button} type='submit'>Enviar</button>
             </form>
             <div className={styles.boxInputs}>
               <h2>Destinos de interesse</h2>
+              <AnimatedMulti />
             </div>
         </div>
          
