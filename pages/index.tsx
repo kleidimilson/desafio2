@@ -1,8 +1,17 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import { useState } from 'react';
 import styles from '../styles/Home.module.css'
+import {maskCPF, maskPhone} from '../utils/Regex';
 
 export default function Home() {
+  const [nome, setNome] = useState("");
+  const [email, setEmail] = useState("");
+  const [cpf, setCPF] = useState("");
+  const [phone, setPhone] = useState("");
+
+
+
   return (
     <div className={styles.container}>
       <Head>
@@ -12,8 +21,55 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-
+        <div className={styles.conteinerInputs}>
+        
+            <form className={styles.boxInputs}>
+               <h2>Dados Pessoais</h2>
+                <div className={styles.inputText}>
+                  <label>Nome</label>
+                  <input 
+                  className={styles.input}
+                   value={nome}
+                   onChange={(e) => setNome(e.target.value)}
+                   placeholder='fulano' 
+                   required/>
+                </div>
+                <div className={styles.inputText}>
+                  <label>Email</label>
+                  <input
+                   className={styles.input}
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                   type='email'  placeholder='fulano@gmail.com' required/>
+                </div>
+                <div className={styles.inputText}>
+                  <label>Telefone</label>
+                  <input 
+                  value={phone}
+                  className={styles.input}
+                  onChange={(e) => setPhone(maskPhone(e.target.value))}
+                  placeholder="(00) 00000-0000"
+                  required/>
+                
+                </div>
+                <div className={styles.inputText}>
+                  <label>CPF</label>
+                  <input
+                   value={cpf}
+                   className={styles.input}
+                   onChange={(e) => setCPF(maskCPF(e.target.value))}
+                   placeholder="000.000.000-00"
+                   required/>
+                </div>
+                <button type='submit'>Enviar</button>
+            </form>
+            <div className={styles.boxInputs}>
+              <h2>Destinos de interesse</h2>
+            </div>
+        </div>
+         
       </main>
+     
       
     </div>
   )
